@@ -1,5 +1,5 @@
 # This script shows different examples of how to create arrays and how to use simple statistics on those arrays.
-# It also has some more advanced methods of statistics from the data camp learning courses.
+# It also has some more advanced methods of statistics.
 # Data is not included just examples.
 
 
