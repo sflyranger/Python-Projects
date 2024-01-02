@@ -447,3 +447,55 @@ else :
     print("pretty small.")
 looking around in the bedroom.
 medium size, nice!
+
+#Below we are subsetting a dataframe by creating another variable. As you can see the output sor sel returns all values
+# where the drives right column is indicated as true.
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Extract drives_right column as Series: dr
+dr = cars['drives_right']
+
+# Use dr to subset cars: sel
+sel = cars[dr]
+
+# Print sel
+print(sel)
+     cars_per_cap        country  drives_right     #output
+US            809  United States          True
+RU            200         Russia          True
+MOR            70        Morocco          True
+EG             45          Egypt          True
+
+# Below is another way to get the same result by just calling the value of dr within the cars data frame and labeling.
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Convert code to a one-liner
+sel = cars[cars['drives_right']]
+
+# Print sel
+print(sel)
+     cars_per_cap        country  drives_right
+US            809  United States          True
+RU            200         Russia          True
+MOR            70        Morocco          True
+EG             45          Egypt          True
+
+# Another Example using comparison operators, notice how the operator is outside the bracket for many_cars
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Create car_maniac: observations that have a cars_per_cap over 500
+many_cars = cars['cars_per_cap'] > 500
+car_maniac = cars[many_cars]
+
+# Print car_maniac
+print(car_maniac)
+     cars_per_cap        country  drives_right
+US            809  United States          True
+AUS           731      Australia         False
+JPN           588          Japan         False
