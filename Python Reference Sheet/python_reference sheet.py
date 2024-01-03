@@ -499,3 +499,230 @@ print(car_maniac)
 US            809  United States          True
 AUS           731      Australia         False
 JPN           588          Japan         False
+
+
+# Below is another example but using the numpy logical and operator, three variables created, one for selecting
+# the column (cpc), one for using logical and (between), lastly for selecting observations that meet the between criteria.( medium)
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Import numpy, you'll need this
+import numpy as np
+
+# Create medium: observations with cars_per_cap between 100 and 500
+cpc = cars['cars_per_cap']
+between = np.logical_and(cpc > 100, cpc < 500)
+medium = cars[between]
+
+# Print medium
+print(medium)
+    cars_per_cap country  drives_right
+RU           200  Russia          True
+
+
+
+#Example using a while loop, creating a variable, making a printout if condition is true, making a change,
+# then reiterating until condition becomes false.
+# Initialize offset
+offset = 8
+
+# Code the while loop
+while offset != 0 :
+    print("correcting ...")
+    offset = offset -1
+    print(offset)
+
+
+# Similar as above but including an if else statement to increase offset.
+# Initialize offset
+offset = -6
+
+# Code the while loop
+while offset != 0 :
+    print("correcting...")
+    if offset > 0 :
+      offset = offset - 1
+    else :
+      offset = offset + 1
+    print(offset)
+<script.py> output:
+    correcting...
+    -5
+    correcting...
+    -4
+    correcting...
+    -3
+    correcting...
+    -2
+    correcting...
+    -1
+    correcting...
+    0
+
+#Basic for loop, causes each element of a list to printed out individually.
+# areas list
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Code the for loop
+for size in areas:
+    print(size)
+11.25
+18.0
+20.0
+10.75
+9.5
+
+
+# Another example to produce a specific output with the index used as a part of the printout.
+# areas list
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Change for loop to use enumerate() and update print()
+for index, a in enumerate(areas) :
+    print("room " + str(index)+':'+ str(a))
+
+
+# Another that designates correct room assignment by adding 1 to the index.
+# areas list
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Code the for loop
+for index, area in enumerate(areas) :
+    print("room " + str(index+1) + ": " + str(area))
+
+
+# Build a for loop from scratch
+# Notice the usage of spaces within quotation to create a logical sentence.
+# Also, given the list contains lists we must reference the required index of each part of the interior lists.
+# Here the given index for the room name is 0 and the index 1 is used for room area as well
+# Str is called to give the exact list value for the sqm.
+for room in house:
+    print( 'the ' +  room[0] + ' is '+  str(room[1]) + ' sqm')
+the hallway is 11.25 sqm
+the kitchen is 18.0 sqm
+the living room is 20.0 sqm
+the bedroom is 10.75 sqm
+the bathroom is 9.5 sqm
+
+
+# Doing for loops for dictionaries, need the item method included in dictionary call for loop.
+# Definition of dictionary
+europe = {'spain': 'madrid', 'france': 'paris', 'germany': 'berlin',
+          'norway': 'oslo', 'italy': 'rome', 'poland': 'warsaw', 'austria': 'vienna'}
+
+# Iterate over europe
+for country, capital in europe.items():
+    print("The capital of " + country + " is " + capital + '.')
+
+# Below is an example of using a for loop in an array. The first call is easy as above but the second one
+# for np_baseball is an array of multiple arrays. To iterate every element of every array we have to use the np.nditer function on the array.
+# Import numpy as np
+import numpy as np
+print(np_height)
+print(np_baseball)
+# For loop over np_height
+for height in np_height:
+    print(str(height) + " inches")
+
+# For loop over np_baseball
+for height in np.nditer(np_baseball):
+    print(height)
+[74 74 72 ... 75 75 73]
+[[ 74 180]
+ [ 74 215]
+ [ 72 210]
+ ...
+ [ 75 205]
+ [ 75 190]
+ [ 73 195]]
+
+
+# Here we are using a for loop on a pandas data frame to iterate every row name and each piece of row data.
+#Notice the use of the var.iterrows function to apply this.
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Iterate over rows of cars
+for col, row in cars.iterrows():
+    print(col)
+    print(row)
+US
+cars_per_cap              809
+country         United States
+drives_right             True
+Name: US, dtype: object
+AUS
+cars_per_cap          731
+country         Australia
+drives_right        False
+Name: AUS, dtype: object
+
+# Another method to select specific column names
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+print(cars)
+# Adapt for loop
+for label, row in cars.iterrows() :
+    print(label + ': ' + str(row['cars_per_cap']))
+     cars_per_cap        country  drives_right
+US            809  United States          True
+AUS           731      Australia         False
+JPN           588          Japan         False
+IN             18          India         False
+RU            200         Russia          True
+MOR            70        Morocco          True
+EG             45          Egypt          True
+US: 809
+AUS: 731
+JPN: 588
+IN: 18
+RU: 200
+MOR: 70
+EG: 45
+
+
+#adding a column with specific column length for each value
+for lab, row in brics.iterrows() :
+    brics.loc[lab, "name_length"] = len(row["country"])
+# Same idea just adding a column that has the country name capitalized.
+# Import cars data
+import pandas as pd
+
+cars = pd.read_csv('cars.csv', index_col=0)
+
+# Code for loop that adds COUNTRY column
+for lab, row in cars.iterrows():
+    cars.loc[lab, "COUNTRY"] = row["country"].upper()
+
+# Print cars
+print(cars)
+     cars_per_cap        country  drives_right        COUNTRY
+US            809  United States          True  UNITED STATES
+AUS           731      Australia         False      AUSTRALIA
+JPN           588          Japan         False          JAPAN
+IN             18          India         False          INDIA
+RU            200         Russia          True         RUSSIA
+MOR            70        Morocco          True        MOROCCO
+EG             45          Egypt          True          EGYPT
+
+# Using apply to make a column name. (Easier) Ending command line for apply depends on whether using a method or function.
+# function here is length
+for lab, row in brics.iterrows() :
+    brics.loc[lab, "name_length"] = len(row["country"])
+
+brics["name_length"] = brics["country"].apply(len)
+
+#Here we are using a method so it is applied inside the apply function as a method.
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Use .apply(str.upper)
+for lab, row in cars.iterrows() :
+    cars.loc[lab, "COUNTRY"] = row["country"].upper()
+cars['COUNTRY'] = cars['country'].apply(str.upper)
+
+print(cars)
