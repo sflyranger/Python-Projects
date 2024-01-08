@@ -13,7 +13,7 @@ netflix_movies = netflix_subset[["title", "country", "genre", "release_year", "d
 
 # Filter for durations shorter than 60 minutes
 short_movies = netflix_movies[netflix_movies.duration < 60]
-
+print(short_movies.iloc[0:19])
 # Define an empty list
 colors = []
 
@@ -27,7 +27,7 @@ for label, row in netflix_movies.iterrows():
         colors.append("green")
     else:
         colors.append("black")
-
+print(netflix_movies)
 # Inspect the first 10 values in your list
 colors[:10]
 
@@ -47,3 +47,5 @@ plt.show()
 
 # Are we certain that movies are getting shorter?
 answer = "maybe"
+
+
