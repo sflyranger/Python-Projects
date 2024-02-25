@@ -321,3 +321,72 @@ print(sales["date"].max())
 # 2012-10-26 00:00:00
 print(sales["date"].min())
 # 2010-02-05 00:00:00
+
+
+def iqr(column):
+    return column.quantile(0.75) - column.quantile(0.25)
+print(sales['temperature_c'].agg(iqr))
+# 16.583333333333336
+
+
+# A custom IQR function
+def iqr(column):
+    return column.quantile(0.75) - column.quantile(0.25)
+
+# Update to print IQR of temperature_c, fuel_price_usd_per_l, & unemployment
+print(sales[["temperature_c", "fuel_price_usd_per_l", "unemployment"]].agg(iqr))
+
+
+# temperature_c           16.583
+# fuel_price_usd_per_l     0.073
+# unemployment             0.565
+# dtype: float64
+
+# A custom IQR function
+def iqr(column):
+    return column.quantile(0.75) - column.quantile(0.25)
+
+# Update to print IQR of temperature_c, fuel_price_usd_per_l, & unemployment
+print(sales[["temperature_c", "fuel_price_usd_per_l", "unemployment"]].agg(iqr))
+# temperature_c           16.583
+# fuel_price_usd_per_l     0.073
+# unemployment             0.565
+# dtype: float64
+
+import numpy as np
+# Custom IQR function
+def iqr(column):
+    return column.quantile(0.75) - column.quantile(0.25)
+
+# Update to print IQR and median of temperature_c, fuel_price_usd_per_l, & unemployment
+print(sales[["temperature_c", "fuel_price_usd_per_l", "unemployment"]].agg([iqr,np.median]))
+#         temperature_c  fuel_price_usd_per_l  unemployment
+# iqr            16.583                 0.073         0.565
+# median         16.967                 0.743         8.099
+
+
+
+# Sort sales_1_1 by date
+sales_1_1 = sales_1_1.sort_values("date",ascending=[True])
+
+# Get the cumulative sum of weekly_sales, add as cum_weekly_sales col
+sales_1_1["cum_weekly_sales"] = sales_1_1["weekly_sales"].cumsum()
+
+# Get the cumulative max of weekly_sales, add as cum_max_sales col
+sales_1_1["cum_max_sales"]=sales_1_1["weekly_sales"].cummax()
+
+# See the columns you calculated
+print(sales_1_1[["date", "weekly_sales", "cum_weekly_sales", "cum_max_sales"]])
+#          date  weekly_sales  cum_weekly_sales  cum_max_sales
+# 0  2010-02-05      24924.50          24924.50       24924.50
+# 1  2010-03-05      21827.90          46752.40       24924.50
+# 2  2010-04-02      57258.43         104010.83       57258.43
+# 3  2010-05-07      17413.94         121424.77       57258.43
+# 4  2010-06-04      17558.09         138982.86       57258.43
+# 5  2010-07-02      16333.14         155316.00       57258.43
+# 6  2010-08-06      17508.41         172824.41       57258.43
+# 7  2010-09-03      16241.78         189066.19       57258.43
+# 8  2010-10-01      20094.19         209160.38       57258.43
+# 9  2010-11-05      34238.88         243399.26       57258.43
+# 10 2010-12-03      22517.56         265916.82       57258.43
+# 11 2011-01-07      15984.24         281901.06       57258.43
